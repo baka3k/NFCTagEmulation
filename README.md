@@ -21,8 +21,8 @@ Please Check out latest version https://carconnectivity.org/digital-key/
 Vehicle/NFC reader should send cmd select APU_ID to mobile to enable HostApduService - the NFC Emulation card.
 Since then, mobile(applet card) & vehicle exchange with each other follow CCC rule
 
-<img src="https://github.com/baka3k/NFCTagEmulation/blob/main/resources/sample.png" alt="MarineGEO circle logo" style="width:300px;"/>
-<img src="https://github.com/baka3k/NFCTagEmulation/blob/main/resources/sample.gif" alt="MarineGEO circle logo" style="width:300px;"/>
+<img src="https://github.com/baka3k/NFCTagEmulation/blob/main/resources/sample.png" alt="NFCEmulatorSample" style="width:300px;"/>
+<img src="https://github.com/baka3k/NFCTagEmulation/blob/main/resources/sample.gif" alt="NFCEmulatorSample" style="width:300px;"/>
 
 ## License
 ```
