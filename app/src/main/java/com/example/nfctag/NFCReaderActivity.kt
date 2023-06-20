@@ -8,10 +8,10 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import com.example.nfctag.base.BaseActivity
-import com.example.nfctag.nfc.cmd.DigitalKeyPingPong
-import com.example.nfctag.nfc.cmd.FelicaPingPong
-import com.example.nfctag.nfc.config.NfcReaderType
-import com.example.nfctag.nfc.nfcreader.NfcReaderCallback
+import hi.baka3k.nfcemulator.command.DigitalKeyPingPong
+import hi.baka3k.nfcemulator.command.FelicaPingPong
+import hi.baka3k.nfctool.config.NfcReaderType
+import hi.baka3k.nfctool.nfcreader.NfcReaderCallback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -59,7 +59,7 @@ class NFCReaderActivity : BaseActivity() {
             nfcReaderCallback.nfcData.collect { nfcData ->
                 Log.d(TAG, "#onDataReceived() $nfcData")
                 val mess = nfcData.ifEmpty {
-                    "NFCData is empty - waiting to read"
+                    "NFCData is empty - waiting!!!"
                 }
                 withContext(Dispatchers.Main) {
                     "$mess\n${txtData.text}".also { txtData.text = it }

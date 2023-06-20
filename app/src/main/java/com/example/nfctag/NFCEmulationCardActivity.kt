@@ -10,7 +10,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.nfctag.base.BaseActivity
-import com.example.nfctag.nfc.cardemulator.MyHostApduService
+import hi.baka3k.nfcemulator.apduservice.MyHostApduService
 import org.xmlpull.v1.XmlPullParser
 
 class NFCEmulationCardActivity : BaseActivity() {

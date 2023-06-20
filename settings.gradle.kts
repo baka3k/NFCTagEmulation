@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "NFCTag"
 include(":app")
- 
+include(":NfcTool")
+include(":NfcEmulator")

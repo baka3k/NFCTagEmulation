@@ -1,5 +1,5 @@
 [versions]
-agp = "8.2.0-alpha06"
+agp = "8.2.0-alpha07"
 kotlin = "1.8.0"
 core-ktx = "1.9.0"
 junit = "4.13.2"
@@ -21,6 +21,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
 [bundles]
 

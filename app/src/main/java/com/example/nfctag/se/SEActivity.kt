@@ -9,11 +9,11 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nfctag.R
-import com.example.nfctag.nfc.applet.AppletCommand
-import com.example.nfctag.nfc.data.CommandAPDU
-import com.example.nfctag.nfc.data.Config
-import com.example.nfctag.nfc.hexStringToByteArray
-import com.example.nfctag.nfc.toHex
+import hi.baka3k.nfcemulator.applet.AppletCommand
+import hi.baka3k.nfcemulator.data.Config
+import hi.baka3k.nfctool.data.CommandAPDU
+import hi.baka3k.nfctool.utils.hexStringToByteArray
+import hi.baka3k.nfctool.utils.toHexString
 import java.util.concurrent.Executors
 
 /**
@@ -112,26 +112,24 @@ class SEActivity : AppCompatActivity(), SEService.OnConnectedListener {
         if (se.isConnected) {
             val rdrs: Array<Reader> = se.readers
             Log.d(TAG, "EService.OnConnectedListener() rdrs size :${rdrs.size}")
+            sendCommandSecureElement(rdrs)
+        }
+    }
+
+    private fun sendCommandSecureElement(rdrs: Array<Reader>) {
+        try {
             if (rdrs.isNotEmpty()) {
                 rdrs.onEach {
                     if (it.isSecureElementPresent) {
                         val sess = it.openSession()
-//                        val ch: Channel? = sess.openLogicalChannel(
-////                            "A00000015141434C00".hexStringToByteArray(),
-//                            "A000000476416E64726F6964435453FF".hexStringToByteArray(),
-////                            "A000000063504B43532D3135".hexStringToByteArray(),
-//                            0 // p2
-//                        )
-//                        A000000063504B43532D3135
-//                        val ch: Channel? =
-//                            sess.openLogicalChannel(
-//                                ISD_AID
-//                            )
                         val ch: Channel? = sess.openLogicalChannel(
-                            "9f36407ead0639fc966f14dde7970f68".hexStringToByteArray(), 0x00
+                            "A000000063504B43532D3135".hexStringToByteArray(), 0x00
                         )
                         if (ch == null) {
-                            Log.d(TAG, "#testTelephony() openLogicalChannel - FAIL - channel null")
+                            Log.d(
+                                TAG,
+                                "#sendCommandSecureElement() openLogicalChannel - FAIL - channel null"
+                            )
                         } else {
                             val respApdu: ByteArray? =
                                 ch.transmit(AppletCommand().createCaCmd().getBytes())
@@ -139,20 +137,28 @@ class SEActivity : AppCompatActivity(), SEService.OnConnectedListener {
                             if (respApdu != null) {
                                 Log.d(
                                     TAG,
-                                    "#testTelephony() response - string :${String(respApdu)}"
+                                    "#sendCommandSecureElement() response - string :${
+                                        String(
+                                            respApdu
+                                        )
+                                    }"
                                 )
-                                Log.d(TAG, "#testTelephony() response - hex: ${respApdu.toHex()}")
+                                Log.d(
+                                    TAG,
+                                    "#sendCommandSecureElement() response - hex: ${respApdu.toHexString()}"
+                                )
                             } else {
-                                Log.d(TAG, "#testTelephony() response - transmit NULL ")
+                                Log.d(TAG, "#sendCommandSecureElement() response - transmit NULL ")
                             }
                             ch.close()
                         }
                     } else {
-//                        Log.d(TAG, "#testTelephony() $it is not secure ElementPresent")
+                        Log.d(TAG, "#sendCommandSecureElement() $it is not secure ElementPresent")
                     }
                 }
-
             }
+        } catch (e: Exception) {
+            Log.e(TAG, "#sendCommandSecureElement() err: $e", e)
         }
     }
 

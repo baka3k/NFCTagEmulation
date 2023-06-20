@@ -43,7 +43,12 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // nfc dependencyTool
+    implementation(project(mapOf("path" to ":NfcTool")))
+    implementation(project(mapOf("path" to ":NfcEmulator")))
 }

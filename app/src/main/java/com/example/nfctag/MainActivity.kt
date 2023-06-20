@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nfctag.felica.NFCFelicaActivity
-import com.example.nfctag.nfc.config.NfcReaderType
+import hi.baka3k.nfctool.config.NfcReaderType
 
 
 class MainActivity : AppCompatActivity() {
